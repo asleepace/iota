@@ -14,8 +14,10 @@ enum Entrypoint {
         app.logger.info("Working directory: \(app.directory.workingDirectory)")
 
         if env.isRelease {
+            app.logger.info("mode: \"RELEASE\"")
             app.logger.logLevel = .info
         } else {
+            app.logger.info("mode: \"DEBUG\"")
             app.logger.logLevel = .debug
         }
 

@@ -6,15 +6,39 @@
     <title>iota</title>
     <link rel="stylesheet" href="style.css">
     <!-- Optional: HTMX -->
-    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <!-- <script src="https://unpkg.com/htmx.org@2.0.4"></script> -->
+    <script src="htmx@2.0.4.min.js"></script>
+    <script src="htmx.js" type="module"></script>
     <!-- Optional: Load serif fonts from Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
-</head>
+     <style>
+        @font-face {
+            font-family: 'Libre Baskerville';
+            src: url('/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Libre Baskerville';
+            src: url('/fonts/LibreBaskerville-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Libre Baskerville';
+            src: url('/fonts/LibreBaskerville-Italic.ttf') format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
+    </style>
+  </head>
 <body>
     <main>
         <article>
             <h1>Welcome to IOTA!</h1>
             <p>This is a sample paragraph with some <em>emphasized</em> and <strong>bold</strong> text. You can also add <a href="#">links like this</a>.</p>
+            <htmx-element url="/ping" />
 
             <h2>Secondary Heading</h2>
             <p>Another paragraph showing how the spacing and typography work together.</p>
