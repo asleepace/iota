@@ -66,11 +66,24 @@
   border: 1px solid var(--blockquote-border);
 }
 
+* {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
+  scrollbar-gutter: stable;
+  min-height: 100vh;
+}
+
 body {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  min-height: 100vh;
   max-width: 45rem;
   margin: 0 auto;
   padding: 2rem;
-  font-family: 'Libre Baskerville', Georgia, serif;
   line-height: 1.6;
   background-color: var(--background);
   color: var(--text);
@@ -170,6 +183,7 @@ pre code {
  th {
   font-weight: 600;
   background-color: var(--code-bg);  /* Match code background */
+  color: var(--code-text);  /* Match code text color */
  }
  
  /* Horizontal Rule */
