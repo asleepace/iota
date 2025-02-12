@@ -19,9 +19,7 @@
   font-style: italic;
 }
 
-/* In your style.css */
 :root {
-  /* Light theme variables */
   --background: #fafaf8;
   --text: #2c3e50;
   --heading: #1a2633;
@@ -32,21 +30,7 @@
   --code-text: #abb2bf;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark theme variables */
-    --background: #1a1a1d;
-    --text: #e1e1e3;
-    --heading: #ffffff;
-    --link: #90cdf4;
-    --blockquote-border: #4a5568;
-    --blockquote-text: #a0aec0;
-    --code-bg: #282c34;
-    --code-text: #abb2bf;
-  }
-}
-
-/* Add class for manual toggle */
+/* Dark theme */
 :root[data-theme="dark"] {
   --background: #1a1a1d;
   --text: #e1e1e3;
@@ -58,6 +42,29 @@
   --code-text: #abb2bf;
 }
 
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --background: #1a1a1d;
+    --text: #e1e1e3;
+    --heading: #ffffff;
+    --link: #90cdf4;
+    --blockquote-border: #4a5568;
+    --blockquote-text: #a0aec0;
+    --code-bg: #282c34;
+    --code-text: #abb2bf;
+  }
+}
+
+/* Add box shadow to the theme toggle in dark mode */
+:root[data-theme="dark"] .theme-toggle {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Optional: Add a subtle border to code blocks in dark mode */
+:root[data-theme="dark"] pre {
+  border: 1px solid var(--blockquote-border);
+}
 
 body {
   max-width: 45rem;
@@ -215,19 +222,8 @@ pre code {
   opacity: 0.8;
 }
 
-
 /* transitions */
 /* Optional: Add transitions to other elements */
 a, blockquote, code, pre, th, td {
   transition: all 0.3s ease;
-}
-
-/* Add box shadow to the theme toggle in dark mode */
-:root[data-theme="dark"] .theme-toggle {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Optional: Add a subtle border to code blocks in dark mode */
-:root[data-theme="dark"] pre {
-  border: 1px solid var(--blockquote-border);
 }
