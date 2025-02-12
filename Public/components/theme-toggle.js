@@ -6,9 +6,7 @@ class ThemeToggle extends HTMLElement {
   }
 
   connectedCallback() {
-      this.render();
-      
-      // Initialize theme based on stored preference or system setting
+      this.render();      
       this.initializeTheme();
   }
 

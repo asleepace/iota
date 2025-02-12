@@ -22,12 +22,12 @@ func routes(_ app: Application) throws {
     app.get("ping") { req -> HTML in
         HTML(value:"""
             <div>
-              Status: 
+              <strong>Status:</strong>
               <span 
                   hx-get="/pong"
                   hx-trigger="load, every 5s"
                   hx-swap="outerHTML">
-                  <span class="status-indicator offline"></span>
+                  <span class="status-indicator status-offline"></span>
                   Checking...
               </span>
             </div>
@@ -37,7 +37,7 @@ func routes(_ app: Application) throws {
     // HTMX Pong
     app.get("pong") { req -> HTML in
         HTML(value:"""
-            <span class="status-indicator online"></span>
+            <span class="status-indicator status-online"></span>
             Online
         """)
     }
