@@ -1,3 +1,12 @@
+/**
+    HTMXElement
+    By Colin Teahan
+    
+ 
+    Custom element which is used to load an HTMX element
+    from the backed.
+ å
+ */
 class HTMXElement extends HTMLElement {
   static get observedAttributes() {
       return ['url', 'trigger', 'swap'];

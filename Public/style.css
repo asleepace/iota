@@ -1,8 +1,10 @@
+/*  MARK: Fonts  */
 @font-face {
   font-family: 'Libre Baskerville';
   src: url('/fonts/LibreBaskerville-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap; /* Improve font loading performance */
 }
 
 @font-face {
@@ -10,6 +12,7 @@
   src: url('/fonts/LibreBaskerville-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,9 +20,29 @@
   src: url('/fonts/LibreBaskerville-Italic.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
+  font-display: swap;
 }
 
+/* Inter for body text */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.ttf') format('truetype-variations');
+  font-weight: 100 900;  /* Full weight range */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Italic.ttf') format('truetype-variations');
+  font-weight: 100 900;  /* Full weight range */
+  font-style: italic;
+  font-display: swap;
+}
+
+/*  MARK: Root Variables  */
 :root {
+  /* Colors */
   --background: #fafaf8;
   --text: #2c3e50;
   --heading: #1a2633;
@@ -28,9 +51,37 @@
   --blockquote-text: #4a5568;
   --code-bg: #282c34;
   --code-text: #abb2bf;
+  
+  /* Typography */
+  --font-heading: 'Libre Baskerville', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'Fira Mono', monospace;
+  --font-size-body: clamp(1rem, 2.5vw, 1.125rem);
+  --line-height-body: 1.6;
+  --line-height-heading: 1.3;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 2.5rem;
+  --space-xxl: 3rem;
+  
+  /* Layout */
+  --size-border: 1px;
+  --size-radius: 5px;
+  --max-width: 45rem;
+  
+  /* Transitions */
+  --transition-fade: background-color 0.2s ease, color 0.2s ease;
+  --transition-hover: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* Dark theme */
+/*  MARK: Theme Variants  */
 :root[data-theme="dark"] {
   --background: #1a1a1d;
   --text: #e1e1e3;
@@ -41,7 +92,6 @@
   --code-bg: #282c34;
   --code-text: #abb2bf;
 }
-
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
@@ -56,16 +106,7 @@
   }
 }
 
-/* Add box shadow to the theme toggle in dark mode */
-:root[data-theme="dark"] .theme-toggle {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Optional: Add a subtle border to code blocks in dark mode */
-:root[data-theme="dark"] pre {
-  border: 1px solid var(--blockquote-border);
-}
-
+/*  MARK: Base Styles  */
 * {
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
@@ -73,171 +114,271 @@
 }
 
 html {
+  background-color: var(--background);
   font-size: 16px;
-  scrollbar-gutter: stable;
   min-height: 100vh;
+  scrollbar-gutter: stable;
 }
 
 body {
-  font-family: 'Libre Baskerville', Georgia, serif;
-  min-height: 100vh;
-  max-width: 45rem;
-  margin: 0 auto;
-  padding: 2rem;
-  line-height: 1.6;
-  background-color: var(--background);
-  color: var(--text);
-  transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: var(--line-height-body);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    max-width: var(--max-width);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: var(--space-sm);
+    
+    transition: var(--transition-fade);
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Libre Baskerville', Georgia, serif;
-  font-weight: 700;  /* Libre Baskerville uses 700 for bold */
-  line-height: 1.3;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
+::selection {
+  background: var(--blockquote-border);
   color: var(--heading);
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
-
-p {
-  margin-bottom: 1.5rem;
-  font-size: 1.125rem;
+/*  MARK: Typography  */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    color: var(--heading);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
 }
 
- /* Links */
- a {
+h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+h3 { font-size: clamp(1.25rem, 3.5vw, 1.75rem); }
+h4 { font-size: clamp(1.1rem, 3vw, 1.5rem); }
+h5 { font-size: clamp(1rem, 2.5vw, 1.25rem); }
+h6 { font-size: 1rem; }
+
+strong {
+  font-weight: var(--font-weight-medium);
+}
+
+p {
+  margin-bottom: var(--space-md);
+  font-size: var(--font-body);
+  max-width: 65ch;
+}
+
+/*  MARK: Links  */
+a {
   color: var(--link);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: var(--size-border) solid transparent;
+  padding-bottom: 1px;
   transition: border-color 0.2s ease;
- }
- 
- a:hover {
+}
+
+a:hover {
   border-bottom-color: currentColor;
- }
- 
- /* Lists */
- ul, ol {
-  margin: 1.5rem 0;
-  padding-left: 2rem;
- }
- 
- li {
-  margin-bottom: 0.5rem;
- }
- 
- /* Blockquotes */
- blockquote {
-  margin: 2rem 0;
-  padding-left: 1.5rem;
+}
+
+/*  MARK: Lists  */
+ul, ol {
+  margin: var(--space-md) 0;
+  padding-left: var(--space-lg);
+}
+
+li {
+  margin-bottom: var(--space-xs);
+}
+
+/*  MARK: Blockquotes  */
+blockquote {
+  margin: var(--space-lg) 0;
+  padding-left: var(--space-md);
   border-left: 3px solid var(--blockquote-border);
-  font-style: italic;
   color: var(--blockquote-text);
- }
- 
- /* Code */
- code {
-  font-family: 'Fira Mono', monospace;
+  font-style: italic;
+}
+
+/*  MARK: Code  */
+code {
+  font-family: var(--font-code);
   font-size: 0.9em;
   background: var(--code-bg);
   color: var(--code-text);
   padding: 0.2em 0.4em;
-  border-radius: 3px;
+  border-radius: var(--size-radius);
 }
 
 pre {
   background: var(--code-bg);
-  padding: 1.5rem;
-  border-radius: 5px;
+  padding: var(--space-md);
+  border-radius: var(--size-radius);
   overflow-x: auto;
-  margin: 1.5rem 0;
+  margin: var(--space-md) 0;
+  border: var(--size-border) solid transparent;
 }
 
 pre code {
-  background: none;  /* Remove background from code inside pre */
+  background: none;
   padding: 0;
   color: var(--code-text);
 }
- 
- /* Tables */
- table {
+
+/*  MARK: Tables  */
+table {
   width: 100%;
   border-collapse: collapse;
-  margin: 2rem 0;
- }
- 
- th, td {
+  margin: var(--space-lg) 0;
+}
+
+th, td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid var(--blockquote-border);  /* Use theme border color */
- }
- 
- th {
-  font-weight: 600;
-  background-color: var(--code-bg);  /* Match code background */
-  color: var(--code-text);  /* Match code text color */
- }
- 
- /* Horizontal Rule */
- hr {
+  border-bottom: var(--size-border) solid var(--blockquote-border);
+}
+
+th {
+    font-weight: var(--font-weight-medium);
+    background-color: var(--code-bg);
+    color: var(--code-text);
+}
+
+/*  MARK: Horizontal Rule  */
+hr {
   border: 0;
-  height: 1px;
-  background-color: var(--blockquote-border);  /* Use theme border color */
-  margin: 3rem 0;
- }
- 
- /* Images */
- img {
+  height: var(--size-border);
+  background-color: var(--blockquote-border);
+  margin: var(--space-xxl) 0;
+}
+
+/*  MARK: Images  */
+img {
   max-width: 100%;
   height: auto;
-  border-radius: 5px;
-  margin: 2rem 0;
- }
- 
- /* Selection */
- ::selection {
-  background: var(--blockquote-border);  /* Use theme border color */
-  color: var(--heading);  /* Use theme heading color */
- }
+  border-radius: var(--size-radius);
+}
 
-/* HTMX PING */
+/*  MARK: Custom Components  */
 .status-indicator {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   display: inline-block;
   margin-right: 5px;
+  flex-shrink: 0;
 }
-.online { background-color: #4CAF50; }
-.offline { background-color: #f44336; }
+
+.status-online  { background-color: #4CAF50; }
+.status-offline { background-color: #f44336; }
 
 .theme-toggle {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: 1px solid var(--text);
+  top: var(--space-sm);
+  right: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--size-radius);
+  border: var(--size-border) solid var(--text);
   background: var(--background);
   color: var(--text);
   cursor: pointer;
-  transition: all 0.3s ease;
+  width: 3rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-hover);
 }
 
 .theme-toggle:hover {
   opacity: 0.8;
+  transform: scale(1.05);
 }
 
-/* transitions */
-/* Optional: Add transitions to other elements */
-a, blockquote, code, pre, th, td {
-  transition: all 0.3s ease;
+/*  MARK: Dark Mode Specifics  */
+:root[data-theme="dark"] .theme-toggle {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] pre {
+  border-color: var(--blockquote-border);
+}
+
+/*  MARK: Responsive Adjustments  */
+@media (max-width: 768px) {
+  body {
+    padding: var(--space-sm);
+  }
+
+  pre {
+    padding: var(--space-sm);
+    font-size: 0.9rem;
+    margin: var(--space-sm) 0;
+  }
+  
+  code {
+    font-size: 0.85em;
+    padding: 0.15em 0.3em;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  th, td {
+    padding: var(--space-xs);
+  }
+  
+  .theme-toggle {
+    top: auto;
+    bottom: var(--space-sm);
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (hover: none) {
+  a:hover {
+    border-bottom-color: transparent;
+  }
+  
+  .theme-toggle:hover {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  a {
+    padding: 0.2rem 0;
+  }
+  
+  button,
+  .theme-toggle {
+    min-height: 44px;
+  }
+  
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Safe area insets */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(var(--space-sm), env(safe-area-inset-left));
+    padding-right: max(var(--space-sm), env(safe-area-inset-right));
+    padding-bottom: max(var(--space-sm), env(safe-area-inset-bottom));
+  }
+  
+  .theme-toggle {
+    right: max(var(--space-sm), env(safe-area-inset-right));
+    bottom: max(var(--space-sm), env(safe-area-inset-bottom));
+  }
 }

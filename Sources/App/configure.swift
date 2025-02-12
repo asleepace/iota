@@ -1,11 +1,14 @@
 import Vapor
 
 public func configure(_ app: Application) async throws {
-    // register middleware
+    
+    // MARK: Middleware
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
 
-    // register routes
+    // MARK: Routes
     try routes(app)
-
+    
+    
+    // MARK:
     app.logger.info("routes: \(app.routes.all)")
 }
