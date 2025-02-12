@@ -3,19 +3,7 @@ import Vapor
 func routes(_ app: Application) throws {
 
     // static files served from /Public folder
-    // app.get { req async in
-    //     HTML(value: """
-    //     <!DOCTYPE html>
-    //     <html>
-    //         <head>
-    //             <title>Hello, world!</title>
-    //         </head>
-    //         <body>
-    //             <h1>Hello, world!</h1>
-    //         </body>
-    //     </html>
-    //     """)
-    // }
+    app.get("/") { req in req.redirect(to: "/index.html") }
 
     // HTMX Ping 
 
