@@ -23,7 +23,7 @@ class HTMXElement extends HTMLElement {
       `;
 
       // Tell HTMX to process this element
-      htmx.process(this);
+      setTimeout(() => htmx.process(this), 1_000);
   }
 }
 

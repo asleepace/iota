@@ -9,6 +9,7 @@
     <!-- <script src="https://unpkg.com/htmx.org@2.0.4"></script> -->
     <script src="htmx@2.0.4.min.js"></script>
     <script src="htmx.js" type="module"></script>
+    <script src="components/theme-toggle.js"></script>
     <!-- Optional: Load serif fonts from Google -->
      <style>
         @font-face {
@@ -36,9 +37,11 @@
 <body>
     <main>
         <article>
+            <theme-toggle></theme-toggle>
             <h1>Welcome to IOTA!</h1>
             <p>This is a sample paragraph with some <em>emphasized</em> and <strong>bold</strong> text. You can also add <a href="#">links like this</a>.</p>
-            <htmx-element url="/ping" />
+            
+            <htmx-element url="/ping"></htmx-element>
 
             <h2>Secondary Heading</h2>
             <p>Another paragraph showing how the spacing and typography work together.</p>
