@@ -280,7 +280,7 @@ img {
   right: var(--space-sm);
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--size-radius);
-  border: var(--size-border) solid var(--text);
+  border: var(--size-border) solid var(--blockquote-border);
   background: var(--background);
   color: var(--text);
   cursor: pointer;

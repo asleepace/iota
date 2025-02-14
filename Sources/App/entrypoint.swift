@@ -10,6 +10,7 @@ enum Entrypoint {
         try LoggingSystem.bootstrap(from: &env)
         
         let app = try await Application.make(env)
+
         app.logger.debug("Env: \(env)")
         app.logger.info("Working directory: \(app.directory.workingDirectory)")
 
@@ -35,7 +36,9 @@ enum Entrypoint {
             try? await app.asyncShutdown()
             throw error
         }
+        
         try await app.execute()
         try await app.asyncShutdown()
     }
 }
+

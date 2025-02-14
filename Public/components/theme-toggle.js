@@ -66,7 +66,7 @@ class ThemeToggle extends HTMLElement {
                   right: 1rem;
                   padding: 0.5rem 1rem;
                   border-radius: 5px;
-                  border: 1px solid var(--text);
+                  border: 1px solid var(--blockquote-border);
                   background: var(--background);
                   color: var(--text);
                   cursor: pointer;
