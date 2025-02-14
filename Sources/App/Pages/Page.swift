@@ -1,18 +1,18 @@
 import Vapor
 
 protocol Templatable {
-    var template: String { get }
-    var title: String { get }
-    var lang: String { get }
-    var body: String { get }
-    var meta: [String] { get }
-    var stylesheets: [String] { get }
-    var scripts: [String] { get }
+    var template: String       { get }
+    var title: String          { get }
+    var lang: String           { get }
+    var body: String           { get }
+    var meta: [String]         { get }
+    var stylesheets: [String]  { get }
+    var scripts: [String]      { get }
 }
 
 extension Templatable {
     var title: String { "iota" }
-    var lang: String { "en" }
+    var lang: String  { "en" }
 
     var meta: [String] {
         return [
@@ -28,8 +28,8 @@ extension Templatable {
 
     var scripts: [String] { 
       return [            
-        "<script src=\"javascript/htmx@2.0.4.min.js\"></script>",
-        "<script src=\"javascript/htmx-element.js\" type=\"module\"></script>",
+        "<script src=\"scripts/htmx@2.0.4.min.js\"></script>",
+        "<script src=\"scripts/htmx-element.js\" type=\"module\"></script>",
         "<script src=\"components/theme-toggle.js\" defer></script>"
       ]
     }
@@ -75,6 +75,7 @@ extension Templatable {
     }
     
     var value: String {
+        print("value called: \(self)")
         return template
             .replacingOccurrences(of: "{{lang}}", with: lang)
             .replacingOccurrences(of: "{{meta}}", with: meta.joined(separator: "\n    "))
@@ -85,15 +86,30 @@ extension Templatable {
 }
 
 class Page: Templatable, AsyncResponseEncodable {
+    
+    var headers: HTTPHeaders {
+        var headers = HTTPHeaders()
+        headers.add(name: .contentType, value: "text/html")
+        return headers
+    }
+    
     let body: String
+    
+    var value: String {
+        print("value called: \(self)")
+        return template
+            .replacingOccurrences(of: "{{lang}}", with: lang)
+            .replacingOccurrences(of: "{{meta}}", with: meta.joined(separator: "\n    "))
+            .replacingOccurrences(of: "{{stylesheets}}", with: stylesheets.joined(separator: "\n    "))
+            .replacingOccurrences(of: "{{scripts}}", with: scripts.joined(separator: "\n    "))
+            .replacingOccurrences(of: "{{body}}", with: body)
+    }
     
     init(_ body: String) {
         self.body = body
     }
 
     public func encodeResponse(for request: Request) async throws -> Response {
-        var headers = HTTPHeaders()
-        headers.add(name: .contentType, value: "text/html")
         return .init(status: .ok, headers: headers, body: .init(string: value))
     }
 }

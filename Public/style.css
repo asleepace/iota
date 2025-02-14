@@ -136,6 +136,8 @@ body {
     padding: var(--space-sm);
     
     transition: var(--transition-fade);
+    display: flex;
+    flex-direction: column;
 }
 
 ::selection {
@@ -262,17 +264,6 @@ img {
 }
 
 /*  MARK: Custom Components  */
-.status-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 5px;
-  flex-shrink: 0;
-}
-
-.status-online  { background-color: #4CAF50; }
-.status-offline { background-color: #f44336; }
 
 .theme-toggle {
   position: fixed;

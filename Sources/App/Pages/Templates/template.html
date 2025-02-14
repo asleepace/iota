@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iota</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://unpkg.com/htmx.org@2.0.4"></script> -->
+    <script src="scripts/htmx@2.0.4.min.js"></script>
+    <script src="scripts/htmx-element.js" type="module"></script>
+     <style>
+        @font-face {
+            font-family: 'Libre Baskerville';
+            src: url('/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Libre Baskerville';
+            src: url('/fonts/LibreBaskerville-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Libre Baskerville';
+            src: url('/fonts/LibreBaskerville-Italic.ttf') format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
+    </style>
+    <!-- load this item last -->
+    <script src="components/index.js" type="module" defer></script>
+  </head>
+<body>
+    <main>
+        <article>
+            <theme-toggle></theme-toggle>
+            <h1>Welcome to IOTA!</h1>
+            <p>This is a sample paragraph with some <em>emphasized</em> and <strong>bold</strong> text. You can also add <a href="#">links like this</a>.</p>
+            
+            <status-badge></status-badge>
+
+            <h2>Secondary Heading</h2>
+            <p>Another paragraph showing how the spacing and typography work together.</p>
+
+            <blockquote>
+                This is what a blockquote looks like. It's perfect for highlighting important text or quotations.
+            </blockquote>
+
+            <h3>Code Example</h3>
+            <pre><code>function example() {
+    return "This is how code blocks look";
+}</code></pre>
+
+            <h3>Available Components</h3>
+            <ul>
+                <li><code>status-badge</code></li>
+                <li><code>theme-toggle</code></li>
+            </ul>
+
+            <h3>Table Example</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Header 1</th>
+                        <th>Header 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Content 1</td>
+                        <td>Content 2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </main>
+</body>
+</html>

@@ -2,16 +2,19 @@
 
 
 class Home: Page {
+    
+    static var html: String {
+        try! String(contentsOfFile: "Sources/App/Pages/Templates/template.html")
+    }
 
-  var title: String { "Home" }
+    var title: String { "Home" }
+    
+    override var value: String {
+        print("Getting html\n\n")
+        return Self.html
+    }
 
-  init() {
-    super.init("""
-      <div class="container-centered">
-        <h1>Home</h1>
-        <p>This is the home page.</p>
-      </div>
-      """
-    )
-  }
-} 
+    init() throws {
+        super.init("")
+    }
+}
