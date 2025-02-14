@@ -24,7 +24,8 @@ func routes(_ app: Application) throws {
         """)
     }
 
-    // HTMX Pong
+    // MARK: HTMX
+    
     app.get("pong") { req -> Page in
         Page("""
             <span class="status-indicator status-online"></span>
@@ -32,15 +33,17 @@ func routes(_ app: Application) throws {
         """)
     }
 
+    app.get("hello") { req async -> String in
+        "Hello, world!"
+    }
+    
+    // MARK: Post
+
     app.post("ping") { req async in
         Response(status: .ok)
     }
 
-    app.get("hello") { req async -> String in
-        "Hello, world!"
-    }
-
-    // -- FILES --
+    // MARK: File Groups
 
     let groupFile = app.grouped("file")
 
@@ -49,7 +52,6 @@ func routes(_ app: Application) throws {
     }
 
     groupFile.get(":id") { req -> String in
-      // return try req.fileio.asyncStreamFile(at: "path/to/your/file.pdf")
       return "downloading"
     }
 }

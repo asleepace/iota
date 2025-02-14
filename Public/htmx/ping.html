@@ -1,0 +1,10 @@
+<div>
+  <strong>Status:</strong>
+  <span
+      hx-get="htmx/pong.html"
+      hx-trigger="load, every 5s"
+      hx-swap="outerHTML">
+      <span class="status-indicator status-offline"></span>
+      Checking...
+  </span>
+</div>

@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iota</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Optional: HTMX -->
     <!-- <script src="https://unpkg.com/htmx.org@2.0.4"></script> -->
-    <script src="javascript/htmx@2.0.4.min.js"></script>
-    <script src="javascript/htmx-element.js" type="module"></script>
-    <!-- Optional: Load serif fonts from Google -->
+    <script src="scripts/htmx@2.0.4.min.js"></script>
+    <script src="scripts/htmx-element.js" type="module"></script>
      <style>
         @font-face {
             font-family: 'Libre Baskerville';
@@ -42,7 +40,7 @@
             <h1>Welcome to IOTA!</h1>
             <p>This is a sample paragraph with some <em>emphasized</em> and <strong>bold</strong> text. You can also add <a href="#">links like this</a>.</p>
             
-            <htmx-element url="/ping"></htmx-element>
+            <htmx-element url="htmx/ping.html"></htmx-element>
 
             <h2>Secondary Heading</h2>
             <p>Another paragraph showing how the spacing and typography work together.</p>
